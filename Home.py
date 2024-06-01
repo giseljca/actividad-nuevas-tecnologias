@@ -1,6 +1,6 @@
 
-import streamlit as st
-import matplotlib.pyplot as plt
+import streamlit as st # type: ignore
+import matplotlib.pyplot as plt # type: ignore
 
 # Set the page title and header
 st.title("Proyecto Integrador")
@@ -9,6 +9,12 @@ st.header("Bienvenido a nuestro Proyecto Integrador")
 # Hero Section with image and project description
 st.image("https://i1.sndcdn.com/artworks-nTgGESMaN9t5TBxQ-xO5rFg-t500x500.jpg", width=600)
 st.write("**Descripción del proyecto:** Breve descripción del proyecto, sus objetivos y su impacto.")
+
+# Participantes Proyecto 
+st.subheader("Participantes trabajo en grupo")
+st.write("- Heidi Yinnela Perez Moreno.")
+st.write("- Brahian.")
+
 
 # Project Overview
 st.subheader("Resumen del Proyecto")
