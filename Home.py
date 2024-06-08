@@ -26,11 +26,6 @@ fig, ax = plt.subplots()
 ax.pie(data, labels=labels, autopct="%1.1f%%")
 st.pyplot(fig)
 
-# Call to Action
-st.subheader("¡Toma Acción!")
-st.write("**Visite nuestro sitio web:** [Enlace al sitio web del proyecto](https://example.com)")
-st.write("**Contáctenos:** [Enlace al correo electrónico de contacto](mailto:info@example.com)")
-
 # Footer with team members and project information
 st.subheader("Equipo y Contacto")
 st.write("**Miembros del equipo:**")
