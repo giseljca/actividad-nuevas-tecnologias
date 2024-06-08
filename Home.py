@@ -10,11 +10,6 @@ st.header("Bienvenido a nuestro Proyecto Integrador")
 st.image("https://i1.sndcdn.com/artworks-nTgGESMaN9t5TBxQ-xO5rFg-t500x500.jpg", width=600)
 st.write("**Descripción del proyecto:** Breve descripción del proyecto, sus objetivos y su impacto.")
 
-# Participantes Proyecto 
-st.subheader("Participantes trabajo en grupo")
-st.write("- Heidi Yinnela Perez Moreno.")
-st.write("- Brahian.")
-
 
 # Project Overview
 st.subheader("Resumen del Proyecto")
@@ -44,8 +39,6 @@ st.write("**Contáctenos:** [Enlace al correo electrónico de contacto](mailto:i
 # Footer with team members and project information
 st.subheader("Equipo y Contacto")
 st.write("**Miembros del equipo:**")
-st.write("- Nombre 1: Cargo en el equipo.")
-st.write("- Nombre 2: Cargo en el equipo.")
-st.write("- Nombre 3: Cargo en el equipo.")
-st.write("**Información de contacto:**")
-st.write("Correo electrónico: [Enlace al correo electrónico de contacto](mailto:info@example.com)")
+st.write("- Nombre 1: Heidi Yinela Perez Moreno")
+st.write("- Nombre 2: Gisel Lorena Jaramillo")
+st.write("- Nombre 3: Bryan Ruiz")
