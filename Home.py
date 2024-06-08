@@ -13,15 +13,10 @@ st.write("**Descripción del proyecto:** Breve descripción del proyecto, sus ob
 
 # Project Overview
 st.subheader("Resumen del Proyecto")
-st.write("- Punto 1: Descripción detallada del punto 1 del proyecto.")
-st.write("- Punto 2: Descripción detallada del punto 2 del proyecto.")
-st.write("- Punto 3: Descripción detallada del punto 3 del proyecto.")
-
-# Features and Benefits
-st.subheader("Características y Beneficios")
-st.write("**Característica 1:** Descripción de la característica 1 y sus beneficios.")
-st.write("**Característica 2:** Descripción de la característica 2 y sus beneficios.")
-st.write("**Característica 3:** Descripción de la característica 3 y sus beneficios.")
+st.write("- Punto 1: Introduccion.")
+st.write("- Punto 2: Simulador cesde.")
+st.write("- Punto 3: Proyecto integrador.")
+st.write("- Punto 4: Proyecto Individual.")
 
 # Interactive Chart or Visualization (Optional)
 # Replace with your specific data and visualization
