@@ -34,10 +34,14 @@ def filtro_popularidad_pista_por_pais():
     nombre_pista = st.selectbox("Nombre de la Pista", track_names)
     resultado = df[df['Track Name'] == nombre_pista]
     if not resultado.empty:
-        popularidad_por_pais = resultado.groupby('Markets')['Popularity'].mean().reset_index()
-        st.write(popularidad_por_pais)
-        fig = px.bar(popularidad_por_pais, x='Markets', y='Popularity', color='Markets', title="Popularidad de la pista por país")
-        st.plotly_chart(fig)
+        # Asegurarse de que cada mercado esté representado correctamente
+        if 'Markets' in resultado.columns:
+            resultado['Markets'] = resultado['Markets'].str.split(';')
+            resultado = resultado.explode('Markets')
+            popularidad_por_pais = resultado.groupby('Markets')['Popularity'].mean().reset_index()
+            st.write(popularidad_por_pais)
+            fig = px.bar(popularidad_por_pais, x='Markets', y='Popularity', color='Markets', title="Popularidad de la pista por país")
+            st.plotly_chart(fig)
 
 # Función de filtro por nombre de artista
 def filtro_por_nombre_artista():
