@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(layout="wide")
-st.title("Análisis de Música")
+st.title("Análisis de música")
 
 # Cargar los datos de música
 df = pd.read_csv('static/datasets/proyectointegrador.csv')
@@ -29,40 +29,41 @@ mode = sorted(df['Mode'].dropna().unique())
 speechiness = sorted(df['Speechiness'].dropna().unique())
 tempo = sorted(df['Tempo'].dropna().unique())
 
-# Función de filtro por nombre de pista
-def filtro_por_nombre_pista():
+# Función de filtro por nombre de pista por pais
+def filtro_popularidad_pista_por_pais():
     nombre_pista = st.selectbox("Nombre de la Pista", track_names)
     resultado = df[df['Track Name'] == nombre_pista]
-    st.write(resultado)
     if not resultado.empty:
-        fig = px.bar(resultado, x='Track Name', y='Popularity', color='Track Name', title="Popularidad de la Pista")
+        popularidad_por_pais = resultado.groupby('Markets')['Popularity'].mean().reset_index()
+        st.write(popularidad_por_pais)
+        fig = px.bar(popularidad_por_pais, x='Markets', y='Popularity', color='Markets', title="Popularidad de la pista por país")
         st.plotly_chart(fig)
 
 # Función de filtro por nombre de artista
 def filtro_por_nombre_artista():
-    nombre_artista = st.selectbox("Nombre del Artista", artist_names)
+    nombre_artista = st.selectbox("Nombre del artista", artist_names)
     resultado = df[df['Artist Name'] == nombre_artista]
     st.write(resultado)
     if not resultado.empty:
-        fig = px.bar(resultado, x='Track Name', y='Popularity', color='Track Name', title="Popularidad de las Pistas del Artista")
+        fig = px.bar(resultado, x='Track Name', y='Popularity', color='Track Name', title="Popularidad de las pistas del artista")
         st.plotly_chart(fig)
 
 # Función de filtro por nombre de álbum
 def filtro_por_nombre_album():
-    nombre_album = st.selectbox("Nombre del Álbum", album_names)
+    nombre_album = st.selectbox("Nombre del álbum", album_names)
     resultado = df[df['Album Name'] == nombre_album]
     st.write(resultado)
     if not resultado.empty:
-        fig = px.bar(resultado, x='Track Name', y='Popularity', color='Track Name', title="Popularidad de las Pistas del Álbum")
+        fig = px.bar(resultado, x='Track Name', y='Popularity', color='Track Name', title="Popularidad de las pistas del álbum")
         st.plotly_chart(fig)
 
 # Selección del filtro
-filtro_seleccionado = st.selectbox("Seleccionar filtro", ["Por Nombre de Pista", "Por Nombre de Artista", "Por Nombre de Álbum"])
+filtro_seleccionado = st.selectbox("Seleccionar filtro", ["Por nombre de pista", "Por nombre de artista", "Por nombre de álbum"])
 
 # Aplicar el filtro seleccionado
-if filtro_seleccionado == "Por Nombre de Pista":
-    filtro_por_nombre_pista()
-elif filtro_seleccionado == "Por Nombre de Artista":
+if filtro_seleccionado == "Por nombre de pista":
+    filtro_popularidad_pista_por_pais()
+elif filtro_seleccionado == "Por nombre de artista":
     filtro_por_nombre_artista()
-elif filtro_seleccionado == "Por Nombre de Álbum":
+elif filtro_seleccionado == "Por nombre de álbum":
     filtro_por_nombre_album()
