@@ -35,7 +35,7 @@ def popularidad_por_pais():
     resultado = df[df['Track Name'] == nombre_pista]
     st.write(resultado)
     if not resultado.empty:
-        fig = px.bar(resultado, x='Country', y='Popularity', color='Markets', title="Popularidad de la pista por país")
+        fig = px.bar(resultado, x='Country', y='Popularity', color='popularity', title="Popularidad de la pista por país")
         st.plotly_chart(fig)
 
 # Función de filtro por nombre de artista
