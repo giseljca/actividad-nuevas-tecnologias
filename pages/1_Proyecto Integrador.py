@@ -31,7 +31,7 @@ speechiness = sorted(df['Speechiness'].dropna().unique())
 tempo = sorted(df['Tempo'].dropna().unique())
 
 # Función de filtro por nombre de pista por pais
-popularidad_por_pais = popularity.groupby('country')['popularity'].mean().reset_index()
+popularidad_por_pais = popularity.groupby('Country')['popularity'].mean().reset_index()
 st.title('Popularidad de la Pista por País')
 
 # Crear la gráfica
