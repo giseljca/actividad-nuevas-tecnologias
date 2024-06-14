@@ -1,7 +1,6 @@
 import streamlit as st # type: ignore
 import pandas as pd
 import plotly.express as px
-import matplotlib.pyplot as plt
 
 st.set_page_config(layout="wide")
 st.title("Análisis de música")
@@ -30,17 +29,19 @@ mode = sorted(df['Mode'].dropna().unique())
 speechiness = sorted(df['Speechiness'].dropna().unique())
 tempo = sorted(df['Tempo'].dropna().unique())
 
-#filtro por popularidad de pista por pais
-def popularidad_por_pais():
-    nombre_pista = st.selectbox("Nombre de la pista", track_names)
+# Función de filtro por nombre de pista por pais
+def filtro_popularidad_pista_por_pais():
+    nombre_pista = st.selectbox("Nombre de la Pista", track_names)
     resultado = df[df['Track Name'] == nombre_pista]
     st.write(resultado)
+    markets_pista = st.selectbox("Nombre del país", markets)
+    resultado_market = df[df['Markets']== markets_pista]
+    st.write(resultado_market)
     if not resultado.empty:
-        fig = px.bar(resultado, x='Markets', y='Popularity', color='Markets', title="Popularidad de la pista por país")
+        popularidad_por_pais = resultado_market.groupby('Markets')['Popularity'].mean().reset_index()
+        st.write(popularidad_por_pais)
+        fig = px.bar(popularidad_por_pais, x='Markets', y='Popularity', color='Markets', title="Popularidad de la pista por país")
         st.plotly_chart(fig)
-
-# Selección del filtro
-filtro_seleccionado = st.selectbox("Seleccionar filtro", ["Por nombre de pista", "Por nombre de artista", "Por nombre de álbum", "Popularidad por país"])
 
 # Función de filtro por nombre de artista
 def filtro_por_nombre_artista():
@@ -61,11 +62,16 @@ def filtro_por_nombre_album():
         st.plotly_chart(fig)
 
 # Selección del filtro
-filtro_seleccionado = st.selectbox("Seleccionar filtro", ["Por nombre de pista", "Por nombre de artista", "Por nombre de álbum"])
+filtro_seleccionado = st.selectbox
+("Seleccionar filtro", [
+    "Por nombre de pista", 
+    "Por nombre de artista", 
+    "Por nombre de álbum"
+    ])
 
 # Aplicar el filtro seleccionado
 if filtro_seleccionado == "Por nombre de pista":
-    popularidad_por_pais()
+    filtro_popularidad_pista_por_pais()
 elif filtro_seleccionado == "Por nombre de artista":
     filtro_por_nombre_artista()
 elif filtro_seleccionado == "Por nombre de álbum":
