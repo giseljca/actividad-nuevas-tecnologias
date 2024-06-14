@@ -14,7 +14,7 @@ st.subheader("Resumen del Proyecto")
 st.write("- Home: aquí se visualiza los integrantes del grupo, un poco de información acerca del trabajo y se da la bienvenida a los lectores. ")
 st.write("- Proyecto Integrador: en este se mostrarán 3 gráficos de 3 filtros que se realizaron a una base de datos de spotify.")
 st.write("- Simulador Cesde: En este apartado se visualiza 3 gráficos que se realizaron a una base de datos simulada del Cesde.")
-st.write("- Proyecto Indivual: para realizarlo se utilizó una base de datos de activos financieros de Meta, a este también se le realizaron 3 filtros y 3 gráficos.")
+st.write("- Proyecto Individual: para realizarlo se utilizó una base de datos de activos financieros de Meta, a este también se le realizaron 3 filtros y 3 gráficos.")
 
 st.image("https://blog.jcharistech.com/wp-content/uploads/2021/07/sample_app_workflow_streamlit_app_jcharistech.png", width=600)
 
