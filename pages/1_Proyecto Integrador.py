@@ -1,6 +1,7 @@
 import streamlit as st # type: ignore
 import pandas as pd
 import plotly.express as px
+import matplotlib.pyplot as plt
 
 st.set_page_config(layout="wide")
 st.title("Análisis de música")
@@ -30,18 +31,18 @@ speechiness = sorted(df['Speechiness'].dropna().unique())
 tempo = sorted(df['Tempo'].dropna().unique())
 
 # Función de filtro por nombre de pista por pais
-def filtro_popularidad_pista_por_pais():
-    nombre_pista = st.selectbox("Nombre de la Pista", track_names)
-    resultado = df[df['Track Name'] == nombre_pista]
-    st.write(resultado)
-    markets_pista = st.selectbox("Nombre del país", markets)
-    resultado_market = df[df['Markets']== markets_pista]
-    st.write(resultado_market)
-    if not resultado.empty:
-        popularidad_por_pais = resultado_market.groupby('Markets')['Popularity'].mean().reset_index()
-        st.write(popularidad_por_pais)
-        fig = px.bar(popularidad_por_pais, x='Markets', y='Popularity', color='Markets', title="Popularidad de la pista por país")
-        st.plotly_chart(fig)
+popularity_by_country = popularity.groupby('country')['popularity'].mean().reset_index()
+st.title('Popularidad de la Pista por País')
+
+# Crear la gráfica
+fig, ax = plt.subplots()
+ax.barh(popularity_by_country['pais'], popularity_by_country['popularidad'])
+ax.set_xlabel('Popularidad')
+ax.set_ylabel('País')
+ax.set_title('Popularidad de la Pista por País')
+
+# Mostrar la gráfica en Streamlit
+st.pyplot(fig)
 
 # Función de filtro por nombre de artista
 def filtro_por_nombre_artista():
