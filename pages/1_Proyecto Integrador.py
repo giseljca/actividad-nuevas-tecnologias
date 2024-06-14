@@ -30,13 +30,12 @@ speechiness = sorted(df['Speechiness'].dropna().unique())
 tempo = sorted(df['Tempo'].dropna().unique())
 
 # Función de filtro por nombre de pista por pais
-def filtro_popularidad_pista_por_pais():
-    nombre_pista = st.selectbox("Nombre de la Pista", track_names)
+def popularidad_por_pais():
+    nombre_pista = st.selectbox("Nombre de la pista", track_names)
     resultado = df[df['Track Name'] == nombre_pista]
+    st.write(resultado)
     if not resultado.empty:
-        popularidad_por_pais = resultado.groupby('Markets')['Popularity'].mean().reset_index()
-        st.write(popularidad_por_pais)
-        fig = px.bar(popularidad_por_pais, x='Markets', y='Popularity', color='Markets', title="Popularidad de la pista por país")
+        fig = px.bar(resultado, x='Country', y='Popularity', color='Markets', title="Popularidad de la pista por país")
         st.plotly_chart(fig)
 
 # Función de filtro por nombre de artista
@@ -62,7 +61,7 @@ filtro_seleccionado = st.selectbox("Seleccionar filtro", ["Por nombre de pista",
 
 # Aplicar el filtro seleccionado
 if filtro_seleccionado == "Por nombre de pista":
-    filtro_popularidad_pista_por_pais()
+    popularidad_por_pais()
 elif filtro_seleccionado == "Por nombre de artista":
     filtro_por_nombre_artista()
 elif filtro_seleccionado == "Por nombre de álbum":
