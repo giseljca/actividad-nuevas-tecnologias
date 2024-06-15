@@ -2,12 +2,13 @@ import streamlit as st # type: ignore
 import matplotlib.pyplot as plt # type: ignore
 
 # Set the page title and header
-st.title("Proyecto Integrador")
+st.markdown("<h1 style='color:blue;'>Proyecto Integrador</h1>", unsafe_allow_html=True)
 st.header("Bienvenido a nuestro Proyecto Integrador")
 
 # Hero Section with image and project description
 st.image("https://i1.sndcdn.com/artworks-nTgGESMaN9t5TBxQ-xO5rFg-t500x500.jpg", width=600)
-st.write("*Descripción del proyecto:Este proyecto hace parte del trabajo final del área de nuevas tecnologías de la programación.Para su realización, se utilizó el lenguaje de programación python y la librería para la manipulación y análisis de datos Pandas, así como también el framework de streamlit, el cual sirvió para realizar toda la parte gráfica del proyecto. ")
+st.subheader("Descripción del Proyecto")
+st.write("Este proyecto hace parte del trabajo final del área de nuevas tecnologías de la programación.Para su realización, se utilizó el lenguaje de programación python y la librería para la manipulación y análisis de datos Pandas, así como también el framework de streamlit, el cual sirvió para realizar toda la parte gráfica del proyecto. ")
 
 # Project Overview
 st.subheader("Resumen del Proyecto")
