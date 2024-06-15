@@ -95,7 +95,7 @@ def filtro3():
     with col2:
         nivel = st.selectbox("Nivel", nivelesU)
     resultado = df[(df['DOCENTE'] == docente) & (df['NIVEL'] == nivel)]
-   
+
     resultado = resultado.reset_index(drop=True) 
     # Grafico de barras
     estudiante = resultado['NOMBRE']
@@ -106,6 +106,7 @@ def filtro3():
     ])   
     fig.update_layout(barmode='group')
     st.plotly_chart(fig, use_container_width=True)
+    
     # Tabla
     st.table(resultado[["NOMBRE", "CONOCIMIENTO", "DESEMPEÑO", "PRODUCTO"]])
 
