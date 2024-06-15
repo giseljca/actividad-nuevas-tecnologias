@@ -14,17 +14,11 @@ df['Date'] = pd.to_datetime(df['Date'])
 # Obtener las opciones únicas para los filtros
 fechas = sorted(df['Date'].dropna().unique())
 
-# Función de filtro por fecha
-def filtro_por_fecha():
-    fecha = st.selectbox("Fecha", fechas)
-    resultado = df[df['Date'] == fecha]
-    st.write(resultado)
-
-    # Gráfico de líneas de los precios de la acción
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=resultado['Date'], y=resultado['Close'], mode='lines', name='Close'))
-    fig.update_layout(title='Precio de Cierre en la Fecha Seleccionada', xaxis_title='Fecha', yaxis_title='Precio de Cierre')
-    st.plotly_chart(fig)
+# Filtrar por precio de apertura
+st.header('Filtrar por precio de apertura')
+precio_apertura = st.number_input('Precio de Apertura mayor a:', value=0.0)
+filtered_open = df[df['Open'] > precio_apertura]
+st.dataframe(filtered_open)
 
 # Función de filtro por rango de fechas
 def filtro_por_rango_de_fechas():
@@ -64,7 +58,7 @@ filtro_seleccionado = st.selectbox("Seleccionar filtro", ["Por Fecha", "Por Rang
 
 # Aplicar el filtro seleccionado
 if filtro_seleccionado == "Por Fecha":
-    filtro_por_fecha()
+    precio_apertura()
 elif filtro_seleccionado == "Por Rango de Fechas":
     filtro_por_rango_de_fechas()
 elif filtro_seleccionado == "Por Precio de Cierre":
